@@ -73,9 +73,9 @@ def filtro(c):
         c == 'G' or c == 'H' or \
         c == 'J' or c == 'K' or c == 'L' or \
         c == 'M' or c == 'N' or \
-        c == 'O' or c == 'P' \
-        c == 'Q' or c == 'R' or c == 'S' \
-        c == 'U' or c == 'V' or c == 'W' \
+        c == 'O' or c == 'P' or \
+        c == 'Q' or c == 'R' or c == 'S' or \
+        c == 'U' or c == 'V' or c == 'W' or \
         c == 'X' or c == 'Y' or c == 'Z': # mayúsculas menos A,C,D,E,I,T
         return 1
     elif c == '@': # delimitador (
@@ -108,38 +108,40 @@ def filtro(c):
         return 15
     elif c == 'q':
         return 16
-    elif c == 'r':
+    elif c == 'a':
         return 17
-    elif c == '.':
+    elif c == 'r':
         return 18
-    elif c == '$':
+    elif c == '.':
         return 19
-    elif c == '(':
+    elif c == '$':
         return 20
-    elif c == ')':
+    elif c == '(':
         return 21
-    elif c == ',':
+    elif c == ')':
         return 22
-    elif c == ';':
+    elif c == ',':
         return 23
-    elif c == ' ':
+    elif c == ';':
         return 24
-    elif c == '&':
+    elif c == ' ':
         return 25
-    elif c == '|':
+    elif c == '&':
         return 26
-    elif c == '-':
+    elif c == '|':
         return 27
-    elif c == '<':
+    elif c == '-':
         return 28
-    elif c == '=':
+    elif c == '<':
         return 29
-    elif c == '~':
+    elif c == '=':
         return 30
-    elif c == '>':
+    elif c == '~':
         return 31
-    else
+    elif c == '>':
         return 32
+    else:
+        return 33
 
 _c = None    # siguiente caracter
 _leer = True # indica si se requiere leer un caracter de la entrada estándar
@@ -154,6 +156,7 @@ def obten_token():
             if _leer: _c = sys.stdin.read(1)
             else: _leer = True
             edo = MT[edo][filtro(_c)]
+            #print edo
             if edo < 100 and edo != 0: lexema += _c
         if edo == VAR:
             _leer = False # ya se leyó el siguiente caracter
