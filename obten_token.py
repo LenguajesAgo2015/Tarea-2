@@ -146,7 +146,6 @@ _leer = True # indica si se requiere leer un caracter de la entrada estándar
 
 # Función principal: implementa el análisis léxico
 def obten_token():
-    """Implementa un analizador léxico: lee los caracteres de la entrada estándar"""
     global _c, _leer
     edo = 0 # número de estado en el autómata
     lexema = "" # palabra que genera el token
