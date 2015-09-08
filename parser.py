@@ -71,3 +71,4 @@ def termino():
         match(token)
     else
         match(scanner.CTE)
+parser()
