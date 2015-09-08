@@ -155,41 +155,65 @@ def obten_token():
             else: _leer = True
             edo = MT[edo][filtro(_c)]
             if edo < 100 and edo != 0: lexema += _c
-        if edo == INT:
-            _leer = False # ya se leyó el siguiente caracter
-            print "Entero", lexema
-            return INT
-        elif edo == FLT:
-            _leer = False # ya se leyó el siguiente caracter
-            print "Flotante", lexema
-            return FLT
-        elif edo == OPB:
-            lexema += _c  # el último caracter forma el lexema
-            print "Operador", lexema
-            return OPB
-        elif edo == LRP:
-            lexema += _c  # el último caracter forma el lexema
-            print "Delimitador", lexema
-            return LRP
-        elif edo == RRP:
-            lexema += _c  # el último caracter forma el lexema
-            print "Delimitador", lexema
-            return RRP
-        elif edo == END:
-            print "Fin de expresion"
-            return END
-        elif edo == VAR:
+        if edo == VAR:
             _leer = False # ya se leyó el siguiente caracter
             print "Variable", lexema
             return VAR
-        elif edo == FUN:
+        elif edo == CTE:
             _leer = False # ya se leyó el siguiente caracter
-            print "Funcion", lexema
-            return FUN
+            print "Constante", lexema
+            return CTE
+        elif edo == CNT:
+            _leer = False  # ya se leyó el siguiente caracter
+            print "Cuantificador", lexema
+            return CNT
+        elif edo == PBI:
+            _leer = False  # ya se leyó el siguiente caracter
+            print "Predicado Binario", lexema
+            return PBI
+        elif edo == PUN:
+            _leer = False  # ya se leyó el siguiente caracter
+            print "Predicado Unario", lexema
+            return PUN
+        elif edo == PNT:
+            lexema += _c  # el último caracter forma el lexema
+            print "Punto", lexema
+            return PNT
+        elif edo == LRP:
+            lexema += _c  # el último caracter forma el lexema
+            print "Paréntesis izquierdo", lexema
+            return LRP
+        elif edo == RRP:
+            lexema += _c  # el último caracter forma el lexema
+            print "Paréntesis izquierdo", lexema
+            return RRP
         elif edo == CLN:
             lexema += _c  # el último caracter forma el lexema
-            print "Delimitador", lexema
+            print "Coma", lexema
             return CLN
+        elif edo == PYC:
+            lexema += _c  # el último caracter forma el lexema
+            print "Punto y coma", lexema
+            return PYC
+        elif edo == BLK:
+            lexema += _c  # el último caracter forma el lexema
+            print "Espacio", lexema
+            return BLK
+        elif edo == OBI:
+            _leer = False  # ya se leyó el siguiente caracter
+            print "Operador Binario", lexema
+            return OBI
+        elif edo == EQU:
+            _leer = False  # ya se leyó el siguiente caracter
+            print "Igualdad", lexema
+            return EQU
+        elif edo == NOT:
+            _leer = False  # ya se leyó el siguiente caracter
+            print "Negación", lexema
+            return NOT
+        elif edo == END:
+            print "Fin", lexema
+            return END
         else:
             leer = False # el último caracter no es raro
             print "ERROR! palabra ilegal", lexema
