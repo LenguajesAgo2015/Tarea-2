@@ -124,7 +124,7 @@ def filtro(c):
         return 23
     elif c == ';':
         return 24
-    elif c == ' ':
+    elif c == ' ' or c == 13 or c == 9 or c == 10:
         return 25
     elif c == '&':
         return 26
@@ -188,7 +188,7 @@ def obten_token():
             return LRP
         elif edo == RRP:
             lexema += _c  # el último caracter forma el lexema
-            print "Paréntesis izquierdo", lexema
+            print "Paréntesis derecho", lexema
             return RRP
         elif edo == CLN:
             lexema += _c  # el último caracter forma el lexema

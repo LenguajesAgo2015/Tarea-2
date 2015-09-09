@@ -6,7 +6,7 @@ def match(tokenEsperado):
     if token == tokenEsperado:
         token = scanner.obten_token()
     else:
-        error("error de sinaxis")
+        print "error de sinaxis"
 
 
 def parser():
@@ -16,14 +16,15 @@ def parser():
     if token == scanner.END:
         print "Expresion bien construida"
     else:
-        error("Expresion mal terminada")
+        print "Expresion mal terminada"
 
 def  oraciones():
     oracion()
-    token == scanner.obten_token()
+    print token
     if(token == scanner.PYC):
-        match(token)
         print token
+        match(token)
+        match(scanner.BLK)
         oraciones()
 
 def oracion():
