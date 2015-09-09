@@ -22,16 +22,11 @@ EQU = 114  # igual (=)
 NOT = 115  # negacion (~)
 ERR = 200  # Error léxico: palabra desconocida
 END = 999  # Final ($)
-
-# Matriz de transiciones: codificación del AFD
-# [renglón, columna] = [estado no final, transición]
-# Estados > 99 son finales (ACEPTORES)
-# Caso especial: Estado 200 = ERROR
 E = 24;
 
 
 #       min  may   @    A    E   I   D    C    T   u    b    e    t    o    d    z    q    a    r    .    $    (    )    ,    ;   " "   &    |    -    <    =    ~    >  raro
-MT = [[  1,   2,   3,   2,   2,  2,  2,   2,   2,  1,   1,   1,   1,   1,   1,   1,   1,   1,   1, PNT, END, LRP, RRP, CLN, PYC, BLK,  18,  18,  21,  22,  19,  20,   E,  E], # 0 inicio
+MT = [[  1,   2,   3,   2,   2,  2,  2,   2,   2,  1,   1,   1,   1,   1,   1,   1,   1,   1,   1, PNT, END, LRP, RRP, CLN, PYC,   0,  18,  18,  21,  22,  19,  20,   E,  E], # 0 inicio
       [  1,   E,   E,   E,   E,  E,  E,   E,   E,  1,   1,   1,   1,   1,   1,   1,   1,   1,   1, VAR, VAR, VAR, VAR, VAR, VAR, VAR,   E,   E,   E,   E,   E,   E,   E,  E], # 1 variable
       [  E,   2,   E,   2,   2,  2,  2,   2,   2,  E,   E,   E,   E,   E,   E,   E,   E,   E,   E, CTE, CTE, CTE, CTE, CTE, CTE, CTE,   E,   E,   E,   E,   E,   E,   E,  E], # 2 constantes
       [  E,   E,   E,   4,   5,  6,  7,   8,   9,  E,   E,   E,   E,   E,   E,   E,   E,   E,   E, ERR, ERR, ERR, ERR, ERR, ERR, ERR,   E,   E,   E,   E,   E,   E,   E,  E], # 3 @
@@ -78,15 +73,15 @@ def filtro(c):
         c == 'U' or c == 'V' or c == 'W' or \
         c == 'X' or c == 'Y' or c == 'Z': # mayúsculas menos A,C,D,E,I,T
         return 1
-    elif c == '@': # delimitador (
+    elif c == '@':
         return 2
-    elif c == 'A': # delimitador )
+    elif c == 'A':
         return 3
-    elif c == 'E': # blancos
+    elif c == 'E':
         return 4
-    elif c == 'I': # punto
+    elif c == 'I':
         return 5
-    elif c == 'D': # fin de entrada
+    elif c == 'D':
         return 6
     elif c == 'C':
         return 7
@@ -124,7 +119,7 @@ def filtro(c):
         return 23
     elif c == ';':
         return 24
-    elif c == ' ' or c == 13 or c == 9 or c == 10:
+    elif c == ' ' or c == '\r' or c == '\n' or c == '\t':
         return 25
     elif c == '&':
         return 26

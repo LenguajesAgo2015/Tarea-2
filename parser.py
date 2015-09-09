@@ -24,7 +24,6 @@ def  oraciones():
     if(token == scanner.PYC):
         print token
         match(token)
-        match(scanner.BLK)
         oraciones()
 
 def oracion():
@@ -55,25 +54,19 @@ def oracion():
         match(token)
         match(scanner.PNT)
         match(scanner.VAR)
-        match(scanner.BLK)
         oracion()
         oracion2()
     else:
         termino()
-        match(scanner.BLK)
         match(scanner.EQU)
-        match(scanner.BLK)
         termino()
         oracion2()
 
 def oracion2():
-    if(token == scanner.BLK):
+    if(token == scanner.OBI):
         match(token)
-        if(token == scanner.OBI):
-            match(token)
-            match(scanner.BLK)
-            oracion()
-            oracion2()
+        oracion()
+        oracion2()
 
 def termino():
     if(token == scanner.VAR):
